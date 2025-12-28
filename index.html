@@ -37,7 +37,7 @@
             if (user) {
                 loginScreen.classList.add('hidden');
                 appContent.classList.remove('hidden');
-                init(); // Inisialisasi UI setelah login
+                if (typeof init === 'function') init();
             } else {
                 if(emailInput) emailInput.value = "";
                 if(passInput) passInput.value = "";
@@ -119,7 +119,7 @@
                     <i data-lucide="book-open" class="w-14 h-14 text-blue-400"></i>
                 </div>
                 <h2 class="text-5xl font-black text-white tracking-tighter uppercase mb-2 leading-none">Elite<span class="text-blue-500 font-light">Seller</span></h2>
-                <p class="text-slate-500 text-[11px] font-black uppercase tracking-[0.6em] opacity-80">Absolute Strategic Handbook</p>
+                <p class="text-slate-500 text-[11px] font-black uppercase tracking-[0.6em] opacity-80 text-justify sm:text-center">Absolute Zenith Strategy</p>
             </div>
 
             <div class="space-y-6 text-left">
@@ -133,10 +133,10 @@
                 </div>
                 
                 <button onclick="handleLogin()" id="btn-login-action" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-7 rounded-[2.2rem] transition-all shadow-2xl shadow-blue-600/30 flex items-center justify-center gap-4 active:scale-95 group mt-8">
-                    <span class="uppercase tracking-widest text-xs">Unlock Systems</span>
+                    <span class="uppercase tracking-widest text-xs">Unlock Alpha Access</span>
                     <i data-lucide="key" class="w-5 h-5 group-hover:rotate-45 transition-transform"></i>
                 </button>
-                <div id="login-error" class="text-rose-400 text-[10px] font-black text-center mt-6 hidden uppercase tracking-widest bg-rose-400/5 p-6 rounded-3xl border border-rose-400/10"></div>
+                <div id="login-error" class="text-rose-400 text-[10px] font-black text-center mt-6 hidden uppercase tracking-widest bg-rose-400/5 p-6 rounded-3xl border border-rose-400/10 text-justify"></div>
             </div>
         </div>
     </div>
@@ -152,7 +152,7 @@
                         </div>
                         <div class="flex flex-col text-left">
                             <h1 class="text-3xl font-black text-slate-900 tracking-tighter uppercase leading-none">Elite<span class="text-blue-600 font-light">Seller</span></h1>
-                            <span class="text-[9px] font-black text-slate-400 uppercase tracking-[0.6em] mt-1">Complete Absolute v10.0</span>
+                            <span class="text-[9px] font-black text-slate-400 uppercase tracking-[0.6em] mt-1 text-justify sm:text-left">Absolute Zenith v15.0</span>
                         </div>
                     </div>
                     
@@ -180,17 +180,18 @@
             <div id="api-warning" class="hidden mb-20 animate-in">
                 <div class="bg-blue-50 border-2 border-blue-100 rounded-[3.5rem] p-14 text-center shadow-xl">
                     <h4 class="text-3xl font-black text-blue-900 mb-4 uppercase tracking-tighter">System Offline</h4>
-                    <p class="text-blue-600/80 mb-12 font-semibold text-xl text-center">Aktifkan API Key Google AI Studio agar sistem bisa berpikir tanpa batas!</p>
-                    <button onclick="toggleApiSettings()" class="bg-blue-600 text-white font-black px-14 py-6 rounded-[2.5rem] text-[11px] uppercase tracking-[0.3em] shadow-2xl active:scale-95 transition-all">Hubungkan Kunci AI</button>
+                    <p class="text-blue-600/80 mb-12 font-semibold text-xl text-justify sm:text-center">Handbook ini butuh API Key Google AI Studio agar sistem bisa berpikir tanpa batas!</p>
+                    <button onclick="toggleApiSettings()" class="bg-blue-600 text-white font-black px-14 py-6 rounded-[2.5rem] text-[11px] uppercase tracking-[0.3em] shadow-2xl active:scale-95 transition-all text-justify sm:text-center">Hubungkan Kunci AI</button>
                 </div>
             </div>
 
             <div class="mb-40 animate-in text-center sm:text-left">
                 <div class="inline-flex items-center gap-3 px-6 py-2.5 bg-blue-50 text-blue-700 rounded-full text-[10px] font-black uppercase tracking-[0.4em] mb-12 border border-blue-100 mx-auto sm:mx-0 shadow-sm">
                     <i data-lucide="zap" class="w-4 h-4"></i>
-                    The Absolute Limitless Handbook
+                    The Absolute Zenith Handbook
                 </div>
-                <div class="flex items-center justify-center sm:justify-start gap-5 mb-8 text-justify sm:text-left">
+                
+                <div class="flex items-center justify-center sm:justify-start gap-5 mb-8">
                     <h2 id="feature-title" class="text-7xl md:text-9xl font-black text-slate-900 tracking-tighter leading-none">Mulai.</h2>
                     <div class="info-container relative cursor-help hidden" id="feature-info-icon">
                         <div class="p-3 bg-slate-100 rounded-full text-slate-400 hover:text-blue-600 transition-all">
@@ -198,17 +199,18 @@
                         </div>
                         <div class="tooltip-box text-left left-0">
                             <p class="font-black text-blue-400 uppercase text-[10px] tracking-widest mb-2 text-justify">Apa Fitur Ini?</p>
-                            <span id="feature-description-text" class="font-medium text-justify">Silakan pilih salah satu menu strategi di atas.</span>
+                            <span id="feature-description-text" class="font-medium text-justify">Pilih modul kerja dan biarkan AI membongkar rahasia jualan untuk Anda.</span>
                         </div>
                     </div>
                 </div>
-                <p id="feature-role-desc" class="text-slate-500 text-3xl font-medium leading-relaxed max-w-3xl">Pilih modul kerja dan biarkan mentor membongkar variabel rahasia untuk bisnis Anda.</p>
+
+                <p id="feature-role-desc" class="text-slate-500 text-3xl font-medium leading-relaxed max-w-3xl text-justify sm:text-left">Dapatkan naskah panduan elit yang akan merubah nasib bisnis Anda selamanya.</p>
             </div>
 
             <section id="form-area" class="mb-64 animate-in">
                 <div id="dynamic-fields" class="space-y-20"></div>
-                <div id="generate-button-container" class="mt-32 hidden text-justify sm:text-left">
-                    <button id="btn-generate" onclick="handleGenerate()" class="group flex items-center justify-center gap-8 bg-slate-900 hover:bg-blue-600 text-white font-black py-9 px-20 rounded-[2.8rem] transition-all duration-700 shadow-2xl active:scale-95 w-full">
+                <div id="generate-button-container" class="mt-32 hidden">
+                    <button id="btn-generate" onclick="handleGenerate()" class="group flex items-center justify-center gap-8 bg-slate-900 hover:bg-blue-600 text-white font-black py-9 px-20 rounded-[2.8rem] transition-all duration-700 shadow-2xl active:scale-95 w-full text-justify">
                         <span id="btn-text" class="tracking-[0.4em] uppercase text-[12px]">Tulis Naskah Strategi Saya</span>
                         <i data-lucide="wand-2" class="w-8 h-8 group-hover:scale-125 transition-transform text-white"></i>
                     </button>
@@ -216,11 +218,6 @@
             </section>
 
             <div id="result-container" class="hidden animate-in scroll-mt-32 pb-40">
-                <div class="flex items-center gap-10 mb-32 opacity-20">
-                    <div class="h-px flex-1 bg-slate-900"></div>
-                    <span class="text-[12px] font-black uppercase tracking-[1.5em] text-center ml-8">Absolute Manuscript</span>
-                    <div class="h-px flex-1 bg-slate-900"></div>
-                </div>
                 <div id="loading-state" class="hidden text-center py-20">
                     <div class="inline-block animate-spin mb-12 text-blue-600"><i data-lucide="refresh-cw" class="w-16 h-16"></i></div>
                     <h4 class="text-4xl font-black tracking-tight text-slate-900 uppercase">Menyusun Handbook...</h4>
@@ -228,12 +225,11 @@
                 <div id="result-card" class="bg-white">
                     <div id="ai-output" class="prose prose-slate mb-32 text-justify leading-[2.3] text-slate-800"></div>
                     <div class="flex flex-col sm:flex-row justify-between items-center gap-14 pt-24 border-t border-slate-100">
-                        <div class="flex items-center gap-8">
+                        <div class="flex items-center gap-8 text-left">
                             <div class="w-20 h-20 bg-emerald-500 rounded-[2.2rem] flex items-center justify-center shadow-2xl shadow-emerald-500/30"><i data-lucide="check" class="w-10 h-10 text-white"></i></div>
-                            <div class="text-left"><p class="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 mb-3">Status Dokumen</p><p class="text-2xl font-black uppercase text-slate-900 tracking-tight leading-none">Verified Absolute</p></div>
+                            <div class="text-left"><p class="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 mb-3 text-justify">Status Dokumen</p><p class="text-2xl font-black uppercase text-slate-900 tracking-tight leading-none text-justify">Verified Absolute</p></div>
                         </div>
-                        <!-- CHANGE: PDF to Word -->
-                        <button onclick="exportToWord()" class="flex items-center gap-5 bg-blue-600 hover:bg-blue-700 text-white font-black px-16 py-7 rounded-[2.5rem] text-[12px] uppercase tracking-widest transition-all shadow-2xl">
+                        <button onclick="exportToWord()" class="flex items-center gap-5 bg-blue-600 hover:bg-blue-700 text-white font-black px-16 py-7 rounded-[2.5rem] text-[12px] uppercase tracking-widest transition-all shadow-2xl active:scale-95 text-justify">
                             <i data-lucide="file-text" class="w-7 h-7"></i> Simpan Naskah Word (.doc)
                         </button>
                     </div>
@@ -250,15 +246,15 @@
             <h3 class="text-5xl font-black uppercase tracking-tighter mb-4 leading-none text-center">Panduan <br><span class="text-blue-600">Cepat & Gampang</span></h3>
             <div class="space-y-16 mt-20 text-justify">
                 <section>
-                    <h4 class="text-2xl font-black mb-6 flex items-center gap-4"><span class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm shrink-0">1</span>Dapetin "Kunci Otak" AI</h4>
-                    <p class="text-xl text-slate-600 leading-relaxed pl-14">Gratis di Google: Buka <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-blue-600 font-bold underline">Link Google Ini</a>, Login Gmail, klik "Create API key".</p>
+                    <h4 class="text-2xl font-black mb-6 flex items-center gap-4 text-justify"><span class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm shrink-0">1</span>Dapetin "Kunci Otak" AI</h4>
+                    <p class="text-xl text-slate-600 leading-relaxed pl-14 text-justify">Gratis di Google: Buka <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-blue-600 font-bold underline text-justify">Link Google Ini</a>, Login Gmail, terus klik tombol biru "Create API key".</p>
                 </section>
                 <section>
-                    <h4 class="text-2xl font-black mb-6 flex items-center gap-4"><span class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm shrink-0">2</span>Simpan Laporan</h4>
-                    <p class="text-xl text-slate-600 leading-relaxed pl-14">Setelah hasil keluar, klik tombol paling bawah "Simpan Naskah Word". Bisa diedit-edit lagi sepuasnya!</p>
+                    <h4 class="text-2xl font-black mb-6 flex items-center gap-4 text-justify"><span class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm shrink-0">2</span>Simpan Naskah</h4>
+                    <p class="text-xl text-slate-600 leading-relaxed pl-14 text-justify">Setelah hasil keluar, klik tombol paling bawah "Simpan Naskah Word" untuk dicetak jadi buku strategi tokomu!</p>
                 </section>
             </div>
-            <button onclick="toggleTutorial()" class="w-full mt-20 bg-blue-600 text-white font-black py-8 rounded-[2rem] text-xl uppercase tracking-widest active:scale-95 transition-all">Sip, Udah Paham!</button>
+            <button onclick="toggleTutorial()" class="w-full mt-20 bg-blue-600 text-white font-black py-8 rounded-[2rem] text-xl uppercase tracking-widest active:scale-95 transition-all text-justify">Sip, Udah Paham!</button>
         </div>
     </div>
 
@@ -274,8 +270,8 @@
                     <input type="password" id="api-key-input" placeholder="Paste kunci rahasia Anda..." class="elite-input w-full font-mono text-base shadow-2xl" />
                 </div>
                 <div class="flex flex-col gap-6">
-                    <button onclick="verifyAndSaveApiKey()" class="bg-blue-600 text-white font-black py-8 rounded-[2.5rem] uppercase text-xs tracking-[0.4em] hover:bg-blue-700 transition-all shadow-2xl shadow-blue-600/30" id="btn-save-api">Connect Engine</button>
-                    <button onclick="deleteApiKey()" class="text-rose-500 font-black text-[11px] uppercase tracking-[0.4em]">Erase Key & Reset Local Cache</button>
+                    <button class="bg-blue-600 text-white font-black py-8 rounded-[2.5rem] uppercase text-xs tracking-[0.4em] hover:bg-blue-700 transition-all shadow-2xl shadow-blue-600/30 text-justify" onclick="verifyAndSaveApiKey()" id="btn-save-api">Connect Engine</button>
+                    <button onclick="deleteApiKey()" class="text-rose-500 font-black text-[11px] uppercase tracking-[0.4em] text-justify">Erase Key & Reset Local Cache</button>
                 </div>
                 <div id="api-validation-msg" class="text-[11px] font-black uppercase hidden p-6 rounded-3xl text-justify"></div>
             </div>
@@ -286,24 +282,30 @@
         const APP_FEATURES = [
             { id: 1, title: "Riset Produk", role: "E-commerce Architect", desc: "Dapatkan minimal 50 ide produk viral yang paling masuk akal untuk dikerjakan sekarang.", prompt: (i) => `Bertindak sebagai Pakar Riset Produk. Berikan minimal 50 ide produk fisik/digital unik untuk ${i.marketplace} dalam niche ${i.niche}. Jelaskan analisis psikologi secara mendalam dan berikan contoh varian konkrit. Tanpa garis pembatas.`, fields: [{ id: 'marketplace', label: 'Platform Marketplace', placeholder: 'Shopee, TikTok, dll...' }, { id: 'niche', label: 'Niche / Kategori Bisnis', placeholder: 'Misal: Alat Masak, Kaos Kaki...' }] },
             { id: 2, title: "Convergence Lab", role: "Brand Architect", desc: "Teknik rahasia menciptakan produk unik hasil tabrakan dua dunia berbeda untuk memonopoli pasar.", prompt: (i) => `Gunakan teknik 'Convergence' untuk menciptakan produk unik bagi brand di niche ${i.niche} yang dijual di ${i.marketplace}. WAJIB MEMBERIKAN 20 CONTOH KONKRIT produk hasil konvergensi yang gila. Narasi panjang tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform Marketplace', placeholder: 'Shopee, TikTok...' }, { id: 'niche', label: 'Niche Bisnis Utama', placeholder: 'Apa bisnis Anda?' }] },
-            { id: 3, title: "Storytelling Maut", role: "Conversion Master", desc: "Gunakan 15 pola 'Hook Maut' + Masalah-Perubahan-Hasil + CTA untuk meledakkan orderan.", prompt: (i) => `Bertindak sebagai Emotional Conversion Master. Susun naskah storytelling produk ${i.productName} untuk ${i.marketplace}. WAJIB MENGGUNAKAN 15 POLA HOOK PEMBUKA: 1. Pernah kesel (...) solusinya ini sih (...), 2. Hampir aja kecewa sama sellernya (...), 3. Nyesel banget kenapa kemarin cuman beli 1 (...), 4. Nggak bisa (...) kalau di lewatin begitu aja, 5. Baru tau ada (...) harganya cuman (...), 6. (...) kamu harus banget punya sih, 7. Nyesel deh kalau gak punya (...), 8. Gara-gara (...) aku jadi bisa, 9. Cuman mau bilang (...), 10. Solusi buat kamu yang suka (...), 11. Kalian pada percaya nggak (...) kalau (...), 12. Hari gini masih belum punya (...), 13. Nggak heran lagi sih kalau (...) ini viral, 14. No debat, (...) ini terlalu cantik buat dilewatin, 15. please deh, siapa sih yang bisa nolak (...) ini ?. LANJUTKAN DENGAN POLA: Masalah, Perubahan, Hasil, dan ditutup dengan salah satu dari 6 tipe CTA (Lembut, Logika, Emosional, Penasaran, Sosial, Experiment). BERIKAN 30 VARIASI. Tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, Instagram, dll...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Produk yang mau diceritakan?' }] },
-            { id: 4, title: "Story Brand", role: "Master Storyteller", desc: "Ubah tokomu jadi 'Pemandu' dan pembeli jadi 'Pahlawan'. Biar pembeli ngerasa kamu satu-satunya harapan mereka.", prompt: (i) => `Bangun narasi 'StoryBrand' mendalam untuk bisnis ${i.niche} di ${i.marketplace}. WAJIB MENERAPKAN framework 'Customer as Hero' dan 'Brand as Guide'. Berikan 10 bab narasi profil toko tanpa garis pembatas.`, fields: [{ id: 'marketplace', label: 'Platform Utama', placeholder: 'TikTok Shop, Instagram, dll...' }, { id: 'niche', label: 'Niche Bisnis', placeholder: 'Contoh: Sabun Artisan Herbal...' }] },
-            { id: 5, title: "Recency Frame", role: "Psychologist", desc: "Trik ngomong jujur di awal biar pembeli percaya sama kelebihan produkmu di akhir.", prompt: (i) => `Gunakan teknik 'Recency Effect' untuk menyusun penawaran ${i.productName}. Mulai dengan 'Kejujuran Pahit', tutup dengan 'Kemenangan Manis'. Berikan 20 contoh perbandingan naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform Marketplace', placeholder: 'Shopee, TikTok...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Produk apa yang mau dirayu?' }] },
-            { id: 6, title: "Neuromarketing", role: "Neuromarketing Expert", desc: "Hacking otak pembeli pake angka dan perbandingan biar harga barangmu keliatan murah banget.", prompt: (i) => `Manipulasi pikiran pembeli untuk ${i.productName}. Terapkan Rule of Three, Contrast Effect, dan Anchoring Bias secara naratif panjang tanpa garis pembatas.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, TikTok...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Produk yang mau diatur harganya?' }] },
-            { id: 7, title: "Copywriting", role: "Conversion Architect", desc: "Bikin tulisan deskripsi jualan yang bikin pembeli nggak sadar udah bayar pesanan.", prompt: (i) => `Tulis deskripsi produk untuk ${i.productName} di ${i.marketplace}. WAJIB MEMBERIKAN 20 CONTOH KONKRIT hook pembuka emosional. Narasi panjang, justify, dan JANGAN PAKAI GARIS.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, TikTok, dll...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Ketik nama barang lengkap...' }] },
-            { id: 8, title: "Judul Jitu", role: "SEO Specialist", desc: "Rekayasa judul barang biar dicari ribuan orang tiap jam secara gratis.", prompt: (i) => `Buatkan 20 pilihan judul produk SEO maut untuk ${i.productName} di ${i.marketplace}. Narasi panjang tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, TikTok...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Ketik nama barang asli...' }] },
-            { id: 9, title: "Bikin Beda", role: "USP Master", desc: "Cari alasan kuat kenapa orang harus beli di kamu, bukan di toko sebelah yang lebih murah.", prompt: (i) => `Bantu cari 'Unique Selling Point' buat ${i.productName} agar beda dari saingan yang lemah di ${i.competitor}. Narasi panjang tanpa garis.`, fields: [{ id: 'productName', label: 'Nama Produk', placeholder: 'Kopi Bubuk Asli...' }, { id: 'competitor', label: 'Kelemahan saingan?', placeholder: 'Pengiriman lama, respon judes...' }] },
-            { id: 10, title: "Ritual Harian", role: "Operations Master", desc: "Jadwal kerja per jam biar tokomu makin dipercaya Marketplace (Star Seller).", prompt: (i) => `Buatkan SOP Ritual Harian naratif per jam untuk admin toko di ${i.marketplace}. Checklist konkrit tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, Tokopedia...' }] },
-            { id: 11, title: "Script Live", role: "Streaming Guru", desc: "Kata-kata sakti pas lagi Live biar orang yang nonton nggak tahan buat nggak checkout.", prompt: (i) => `Buatkan skrip naratif panjang sesi Live ${i.platform} untuk ${i.productName}. Berikan contoh kalimat pembuka dan cara maksa checkout.`, fields: [{ id: 'productName', label: 'Produk untuk Live', placeholder: 'Gamis Modern...' }, { id: 'platform', label: 'Live Di Mana?', placeholder: 'TikTok Live, Shopee Live...' }] },
-            { id: 12, title: "Konten Viral", role: "Viral Strategist", desc: "Strategi video pendek dengan pola cerita yang memicu trafik jutaan view secara gratis.", prompt: (i) => `Strategi video pendek buat promosiin ${i.productName}. Kasih 5 ide cerita gila, musik tren, dan caption maut.`, fields: [{ id: 'productName', label: 'Produk', placeholder: 'Botol Estetik...' }, { id: 'target', label: 'Siapa calon pembelinya?', placeholder: 'Mahasiswa, Ibu Muda...' }] },
-            { id: 13, title: "Tips Foto", role: "Art Director", desc: "Trik foto produk biar barang murah keliatan mewah kaya barang jutaan.", prompt: (i) => `Panduan foto produk ${i.productName}. Info angle dan dekorasi visual naratif tanpa garis pembatas.`, fields: [{ id: 'productName', label: 'Nama Produk', placeholder: 'Tas Kulit...' }] },
-            { id: 14, title: "Cara Iklan", role: "Algorithm Hacker", desc: "Settingan iklan paling murah tapi dapet orderan paling banyak.", prompt: (i) => `Rancang set iklan naratif untuk ${i.productName} di ${i.marketplace}. Kasih daftar 50 kata kunci maut.`, fields: [{ id: 'marketplace', label: 'Platform Ads', placeholder: 'Shopee Ads, TikTok Ads...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Helm Keren...' }] },
-            { id: 15, title: "Komplain", role: "PR Expert", desc: "Kalimat sakti buat jinakin pembeli marah biar nggak kasih bintang 1.", prompt: (i) => `Panduan hadapi komplain ${i.issue}. Kasih 10 contoh kalimat chat menenangkan pembeli naratif tanpa garis.`, fields: [{ id: 'issue', label: 'Masalahnya apa?', placeholder: 'Barang pecah, kurang...' }] },
-            { id: 16, title: "Bales Review", role: "Engagement Master", desc: "Balas ulasan pembeli biar pembeli lain ngerasa tokomu bener-bener terpercaya.", prompt: (i) => `Contoh balesan ulasan bintang ${i.stars} komentar: "${i.comment}". Tulis naratif ramah tanpa garis.`, fields: [{ id: 'stars', label: 'Bintang Berapa?', placeholder: '1-5...' }, { id: 'comment', label: 'Apa kata pembelinya?', placeholder: 'Barangnya pecah pas sampe...' }] },
-            { id: 17, title: "Bikin Langganan", role: "Loyalty Expert", desc: "Strategi biar orang yang udah beli sekali, besok-besok balik lagi belanja di tokomu.", prompt: (i) => `Cara bikin pembeli di ${i.marketplace} balik lagi belanja. Ide bonus dan follow-up naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, Tokopedia...' }] },
-            { id: 18, title: "Pas Promo Gede", role: "Campaign Master", desc: "Persiapan perang pas tanggal kembar (Harbolnas) biar stok aman dan omzet meledak.", prompt: (i) => `Strategi jualan event ${i.event} di ${i.marketplace}. Persiapan stok dan operasional naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, Tokopedia...' }, { id: 'event', label: 'Nama Promo', placeholder: '12.12, Gajian Sale...' }] },
-            { id: 19, title: "Ekspansi Bisnis", role: "Growth Analyst", desc: "Analisis cabang bisnis baru biar kerajaan bisnis kamu makin gede.", prompt: (i) => `Rekomendasi 20 sub-niche baru untuk toko niche ${i.niche} di ${i.marketplace}. Naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, TikTok...' }, { id: 'niche', label: 'Bisnis Sekarang', placeholder: 'Baju Wanita...' }] },
-            { id: 20, title: "Audit Toko", role: "E-commerce Architect", desc: "Audit visual dan teknis biar tampilan tokomu sekelas butik internasional.", prompt: (i) => `Audit optimasi naratif toko kategori ${i.category} di ${i.marketplace}. Berikan 20 contoh teknis perbaikan tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, TikTok...' }, { id: 'category', label: 'Kategori Toko', placeholder: 'Furniture...' }] }
+            { id: 3, title: "Audit Iklan Berdarah", role: "Ads Data Scientist", desc: "Bongkar performa iklanmu (CPC, CTR, ROI, ROAS, ACOS) dan dapatkan solusi tergila untuk membalikkan keadaan.", prompt: (i) => `Analisa data iklan saya di ${i.marketplace}: Biaya Rp ${i.spend}, Klik ${i.clicks}, Order ${i.orders}, Omzet Rp ${i.revenue}. HITUNG: CPC, CTR, ROI, ROAS, ACOS. Berikan MINIMAL 10 SOLUSI TERGILA (Out of the Box) untuk perbaikan performa secara drastis. Naratif panjang tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform Iklan', placeholder: 'Shopee Ads, TikTok Ads...' }, { id: 'spend', label: 'Total Biaya Iklan (Rp)', placeholder: '1000000' }, { id: 'clicks', label: 'Total Klik', placeholder: '5000' }, { id: 'orders', label: 'Total Pesanan', placeholder: '50' }, { id: 'revenue', label: 'Total Omzet (Rp)', placeholder: '10000000' }] },
+            { id: 4, title: "Arsitek Kolaborasi", role: "Partnership Architect", desc: "Temukan cara 'membajak' pasar brand lain secara legal melalui kolaborasi unik dan pitch yang tak bisa ditolak.", prompt: (i) => `Bertindak sebagai Partnership Architect. Rancang kolaborasi brand untuk ${i.niche} di ${i.marketplace} dengan target mitra ${i.targetPartner}. Jelasin Analisis Kolaborasi, Ide Produk Bundling, dan Naskah Pitch Penawaran. Naratif panjang tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform Utama', placeholder: 'TikTok, Instagram, dll...' }, { id: 'niche', label: 'Bidang Bisnis Anda', placeholder: 'Contoh: Kedai Kopi, Skincare...' }, { id: 'targetPartner', label: 'Target Brand/Mitra', placeholder: 'Contoh: Influencer, Toko Kue, Brand Baju...' }] },
+            { id: 5, title: "Pasukan Afiliasi", role: "Affiliate Strategist", desc: "Membangun 'pasukan' reseller dan influencer yang siap jualanin barangmu 24 jam nonstop dengan sistem bagi hasil maut.", prompt: (i) => `Bertindak sebagai Master Affiliate Strategist. Bantu saya membangun sistem afiliasi untuk produk ${i.productName} di ${i.marketplace}. JELASKAN SECARA DETAIL: 1. Skema Komisi Maut (agar influencer berebut daftar), 2. Kriteria Pasukan KOL (Nano/Micro yang potensial), 3. Naskah Pitch Undangan (kata-kata maut agar influencer mau mempromosikan barang kita). Berikan minimal 10 variasi naskah undangan. Naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform Afiliasi', placeholder: 'TikTok Affiliate, Shopee Affiliate...' }, { id: 'productName', label: 'Nama Produk Anda', placeholder: 'Contoh: Tas Kulit Premium...' }] },
+            { id: 6, title: "Storytelling Maut", role: "Conversion Master", desc: "Gunakan 15 pola 'Hook Maut' + Masalah-Perubahan-Hasil + CTA untuk meledakkan orderan.", prompt: (i) => `Susun storytelling produk ${i.productName} untuk ${i.marketplace}. WAJIB MENGGUNAKAN 15 POLA HOOK PEMBUKA (Pernah kesel, Hampir kecewa, Nyesel banget, Baru tau, dll). LANJUTKAN DENGAN POLA: Masalah, Perubahan, Hasil, dan ditutup dengan salah satu dari 6 tipe CTA (Lembut, Logika, Emosional, Penasaran, Sosial, Experiment). BERIKAN 30 VARIASI CERITA BERBEDA. Naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, Instagram, dll...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Produk yang mau diceritakan?' }] },
+            { id: 7, title: "Story Brand", role: "Master Storyteller", desc: "Ubah tokomu jadi 'Pemandu' dan pembeli jadi 'Pahlawan'. Biar pembeli ngerasa kamu satu-satunya harapan mereka.", prompt: (i) => `Bangun narasi 'StoryBrand' mendalam untuk bisnis ${i.niche} di ${i.marketplace}. WAJIB MENERAPKAN framework 'Customer as Hero' dan 'Brand as Guide'. Berikan 10 bab narasi profil toko tanpa garis pembatas.`, fields: [{ id: 'marketplace', label: 'Platform Utama', placeholder: 'TikTok Shop, Instagram, dll...' }, { id: 'niche', label: 'Niche Bisnis', placeholder: 'Contoh: Sabun Artisan Herbal...' }] },
+            { id: 8, title: "Recency Frame", role: "Psychologist", desc: "Trik ngomong jujur di awal biar pembeli percaya sama kelebihan produkmu di akhir.", prompt: (i) => `Gunakan teknik 'Recency Effect' untuk menyusun penawaran ${i.productName}. Mulai dengan 'Kejujuran Pahit', tutup dengan 'Kemenangan Manis'. Berikan 20 contoh perbandingan naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform Marketplace', placeholder: 'Shopee, TikTok...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Produk apa yang mau dirayu?' }] },
+            { id: 9, title: "Neuromarketing", role: "Neuromarketing Expert", desc: "Hacking otak pembeli pake angka dan perbandingan biar harga barangmu keliatan murah banget.", prompt: (i) => `Manipulasi pikiran pembeli untuk ${i.productName}. Terapkan Rule of Three, Contrast Effect, dan Anchoring Bias secara naratif panjang tanpa garis pembatas.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, TikTok...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Produk yang mau diatur harganya?' }] },
+            { id: 10, title: "Copywriting", role: "Conversion Architect", desc: "Bikin tulisan deskripsi jualan yang bikin pembeli nggak sadar udah bayar pesanan.", prompt: (i) => `Tulis deskripsi produk untuk ${i.productName} di ${i.marketplace}. WAJIB MEMBERIKAN 20 CONTOH KONKRIT hook pembuka emosional. Narasi panjang, justify, dan JANGAN PAKAI GARIS.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, TikTok, dll...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Ketik nama barang lengkap...' }] },
+            { id: 11, title: "Atur Harga", role: "Profit Engineer", desc: "Kalkulasi untung bersih setelah dipotong biaya admin, packing, dan operasional.", prompt: (i) => `Kalkulasi harga untuk ${i.productName} dengan modal ${i.cost} dan saingan ${i.compPrice}. Berikan simulasi laba bersih naratif panjang tanpa garis.`, fields: [{ id: 'productName', label: 'Nama Produk', placeholder: 'Helm Motor...' }, { id: 'cost', label: 'Modal Per Unit', placeholder: '50000' }, { id: 'compPrice', label: 'Harga Saingan', placeholder: '150000' }] },
+            { id: 12, title: "Judul Jitu SEO", role: "SEO Specialist", desc: "Rekayasa judul barang biar dicari ribuan orang tiap jam secara gratis.", prompt: (i) => `Buatkan 20 pilihan judul produk SEO maut untuk ${i.productName} di ${i.marketplace}. Narasi panjang tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, TikTok...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Ketik nama barang asli...' }] },
+            { id: 13, title: "Hacker SEO", role: "Search Alchemist", desc: "Bongkar rahasia algoritma pencarian agar produkmu nangkring di halaman pertama secara organik.", prompt: (i) => `Rancang strategi SEO menyeluruh untuk ${i.productName} di ${i.marketplace}. JELASKAN: Riset Kata Kunci Semantik, Metadata, Image SEO. Naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform Marketplace', placeholder: 'Shopee, TikTok...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Nama produk SEO...' }] },
+            { id: 14, title: "Hacker Kompetitor", role: "Competitive Agent", desc: "Infiltrasi mental untuk membongkar strategi rahasia kompetitor dan mengambil alih pelanggan setia mereka.", prompt: (i) => `Bongkar kelemahan kompetitor di niche ${i.niche} pada platform ${i.marketplace}. Berikan 10 STRATEGI COUNTER-ATTACK tergila untuk mencuri perhatian pelanggan mereka. Naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, Tokopedia, TikTok...' }, { id: 'niche', label: 'Niche Bisnis', placeholder: 'Bidang usahamu...' }] },
+            { id: 15, title: "Bikin Beda", role: "USP Master", desc: "Cari alasan kuat kenapa orang harus beli di kamu, bukan di toko sebelah yang lebih murah.", prompt: (i) => `Bantu cari 'Unique Selling Point' buat ${i.productName} agar beda dari saingan yang lemah di ${i.competitor}. Narasi panjang tanpa garis.`, fields: [{ id: 'productName', label: 'Nama Produk', placeholder: 'Kopi Bubuk Asli...' }, { id: 'competitor', label: 'Kelemahan saingan?', placeholder: 'Pengiriman lama, respon judes...' }] },
+            { id: 16, title: "Ritual Harian", role: "Operations Master", desc: "Jadwal kerja per jam biar tokomu makin dipercaya Marketplace (Star Seller).", prompt: (i) => `Buatkan SOP Ritual Harian naratif per jam untuk admin toko di ${i.marketplace}. Checklist konkrit tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, Tokopedia...' }] },
+            { id: 17, title: "Script Live", role: "Streaming Guru", desc: "Kata-kata sakti pas lagi Live biar orang yang nonton nggak tahan buat nggak checkout.", prompt: (i) => `Buatkan skrip naratif panjang sesi Live ${i.platform} untuk ${i.productName}. Berikan contoh kalimat pembuka dan cara maksa checkout.`, fields: [{ id: 'productName', label: 'Produk untuk Live', placeholder: 'Gamis Modern...' }, { id: 'platform', label: 'Live Di Mana?', placeholder: 'TikTok Live, Shopee Live...' }] },
+            { id: 18, title: "Konten Viral", role: "Viral Strategist", desc: "Strategi video pendek dengan pola cerita yang memicu trafik jutaan view secara gratis.", prompt: (i) => `Strategi video pendek buat promosiin ${i.productName}. Kasih 5 ide cerita gila, musik tren, dan caption maut.`, fields: [{ id: 'productName', label: 'Produk', placeholder: 'Botol Estetik...' }, { id: 'target', label: 'Siapa calon pembelinya?', placeholder: 'Mahasiswa, Ibu Muda...' }] },
+            { id: 19, title: "Tips Foto", role: "Art Director", desc: "Trik foto produk biar barang murah keliatan mewah kaya barang jutaan.", prompt: (i) => `Panduan foto produk ${i.productName}. Info angle dan dekorasi visual naratif tanpa garis pembatas.`, fields: [{ id: 'productName', label: 'Nama Produk', placeholder: 'Tas Kulit...' }] },
+            { id: 20, title: "Strategi Iklan", role: "Algorithm Hacker", desc: "Settingan iklan paling murah tapi dapet orderan paling banyak.", prompt: (i) => `Rancang set iklan naratif untuk ${i.productName} di ${i.marketplace}. Kasih daftar 50 kata kunci maut.`, fields: [{ id: 'marketplace', label: 'Platform Ads', placeholder: 'Shopee Ads, TikTok Ads...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Helm Keren...' }] },
+            { id: 21, title: "Komplain", role: "PR Expert", desc: "Kalimat sakti buat jinakin pembeli marah biar nggak kasih bintang 1.", prompt: (i) => `Panduan hadapi komplain ${i.issue}. Kasih 10 contoh kalimat chat menenangkan pembeli naratif tanpa garis.`, fields: [{ id: 'issue', label: 'Masalahnya apa?', placeholder: 'Barang pecah, kurang...' }] },
+            { id: 22, title: "Bales Review", role: "Engagement Master", desc: "Balas ulasan pembeli biar pembeli lain ngerasa tokomu bener-bener terpercaya.", prompt: (i) => `Contoh balesan ulasan bintang ${i.stars} komentar: "${i.comment}". Tulis naratif ramah tanpa garis.`, fields: [{ id: 'stars', label: 'Bintang Berapa?', placeholder: '1-5...' }, { id: 'comment', label: 'Apa kata pembelinya?', placeholder: 'Barangnya pecah pas sampe...' }] },
+            { id: 23, title: "Bikin Langganan", role: "Loyalty Expert", desc: "Strategi biar orang yang udah beli sekali, besok-besok balik lagi belanja di tokomu.", prompt: (i) => `Cara bikin pembeli di ${i.marketplace} balik lagi belanja. Ide bonus dan follow-up naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, Tokopedia...' }] },
+            { id: 24, title: "Pas Promo Gede", role: "Campaign Master", desc: "Persiapan perang pas tanggal kembar (Harbolnas) biar stok aman dan omzet meledak.", prompt: (i) => `Strategi jualan event ${i.event} di ${i.marketplace}. Persiapan stok dan operasional naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, Tokopedia...' }, { id: 'event', label: 'Nama Promo', placeholder: '12.12, Gajian Sale...' }] },
+            { id: 25, title: "Ekspansi Bisnis", role: "Growth Analyst", desc: "Analisis cabang bisnis baru biar kerajaan bisnis kamu makin gede.", prompt: (i) => `Rekomendasi 20 sub-niche baru untuk toko niche ${i.niche} di ${i.marketplace}. Naratif tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, TikTok...' }, { id: 'niche', label: 'Bisnis Sekarang', placeholder: 'Baju Wanita...' }] },
+            { id: 26, title: "Audit Toko", role: "Visual Architect", desc: "Audit visual dan teknis biar tampilan tokomu sekelas butik internasional.", prompt: (i) => `Audit optimasi naratif toko kategori ${i.category} di ${i.marketplace}. Berikan 20 contoh teknis perbaikan tanpa garis.`, fields: [{ id: 'marketplace', label: 'Platform', placeholder: 'Shopee, TikTok...' }, { id: 'category', label: 'Kategori Toko', placeholder: 'Furniture...' }] }
         ];
 
         let userApiKey = localStorage.getItem('jagojualan_api_key') || "";
@@ -323,7 +325,7 @@
             } catch (err) {
                 errorDiv.innerText = "ACCESS REJECTED: INVALID CREDENTIALS";
                 errorDiv.classList.remove('hidden');
-                btn.disabled = false; btn.innerText = "Unlock Systems";
+                btn.disabled = false; btn.innerText = "Unlock Alpha Access";
             }
         }
 
@@ -404,7 +406,7 @@
             if(!f) return;
             document.getElementById('dynamic-fields').innerHTML = f.fields.map(field => `
                 <div class="space-y-6 animate-in text-left">
-                    <label class="block text-[12px] font-black uppercase tracking-[0.5em] text-slate-400 ml-6 text-justify">${field.label}</label>
+                    <label class="block text-[12px] font-black uppercase tracking-[0.5em] text-slate-400 ml-6 text-justify text-justify text-justify">${field.label}</label>
                     <input type="text" oninput="inputs['${field.id}']=this.value" placeholder="${field.placeholder}" class="elite-input w-full" />
                 </div>
             `).join('');
@@ -424,7 +426,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: [{ parts: [{ text: f.prompt(inputs) }] }],
-                        systemInstruction: { parts: [{ text: `Jawab dalam bahasa Indonesia profesional yang sangat kaya inspirasi. ANDA ADALAH MASTER E-COMMERCE. WAJIB MEMBERIKAN BANYAK CONTOH KONKRIT di setiap rincian. Format murni narasi panjang. JANGAN GUNAKAN GARIS PUTUS-PUTUS (---) ATAU SIMBOL ===. Rata kiri-kanan (justify).` }] }
+                        systemInstruction: { parts: [{ text: `Jawab dalam bahasa Indonesia profesional yang sangat kaya inspirasi. ANDA ADALAH MASTER E-COMMERCE. WAJIB MEMBERIKAN BANYAK CONTOH KONKRIT di setiap rincian. BERIKAN VARIATIF IDE SEBANYAK MUNGKIN (MINIMAL 30 IDE DI SETIAP BAB). Format murni narasi panjang. JANGAN GUNAKAN GARIS PUTUS-PUTUS (---) ATAU SIMBOL ===. Rata kiri-kanan (justify).` }] }
                     })
                 });
                 const data = await response.json();
@@ -433,15 +435,15 @@
                 loading.classList.add('hidden'); resCard.classList.remove('hidden');
                 setTimeout(() => resCon.scrollIntoView({ behavior: 'smooth' }), 100);
             } catch {
-                output.innerHTML = "<p class='text-center uppercase font-black py-20 text-rose-600'>Synchronization failure.</p>";
+                output.innerHTML = "<p class='text-center uppercase font-black py-20 text-rose-600 text-justify'>Synchronization failure.</p>";
                 loading.classList.add('hidden'); resCard.classList.remove('hidden');
             }
         }
 
         function formatText(t) {
             let clean = t.replace(/^-{3,}$/gm, '').replace(/^={3,}$/gm, '').replace(/^_{3,}$/gm, '').replace(/^\s*[\-\*]{3,}\s*$/gm, '');
-            return clean.replace(/^### (.*$)/gim, '<h3 class="text-4xl font-black uppercase tracking-tight mb-10 mt-32 text-slate-900">$1</h3>')
-                    .replace(/^## (.*$)/gim, '<h2 class="text-5xl font-black uppercase tracking-tighter mb-14 mt-40 text-blue-600">$1</h2>')
+            return clean.replace(/^### (.*$)/gim, '<h3 class="text-4xl font-black uppercase tracking-tight mb-10 mt-32 text-slate-900 text-justify">$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2 class="text-5xl font-black uppercase tracking-tighter mb-14 mt-40 text-blue-600 text-justify">$1</h2>')
                     .replace(/\*\*(.*)\*\*/gim, '<strong class="font-black text-black">$1</strong>')
                     .replace(/^\* (.*$)/gim, '<li>$1</li>').replace(/^\- (.*$)/gim, '<li>$1</li>')
                     .replace(/\n\n/g, '</p><p class="text-justify leading-[2.3] mb-14">')
@@ -450,11 +452,9 @@
                     .replace(/(<\/p>|$)/g, '</p>');
         }
 
-        // PERBAIKAN TOTAL: Ganti PDF ke Word (Sangat Ringan & Anti Kosong)
         function exportToWord() {
             const aiOutput = document.getElementById('ai-output');
             const feature = APP_FEATURES[activeTabId];
-            
             const header = `
                 <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
                 <head><meta charset='utf-8'><title>Elite Strategy Export</title>
@@ -474,7 +474,6 @@
                 </div>
                 </body></html>
             `;
-
             const blob = new Blob(['\ufeff', header], { type: 'application/msword' });
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -484,7 +483,6 @@
             link.click();
             document.body.removeChild(link);
         }
-        window.onload = init;
     </script>
 </body>
 </html>
