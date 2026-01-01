@@ -55,12 +55,9 @@
 
         .prose h2 { font-weight: 800; color: #1e3a8a; margin-top: 4rem; margin-bottom: 2rem; font-size: 2.5rem; letter-spacing: -0.025em; }
         .prose h3 { font-weight: 700; color: #1e293b; margin-top: 2.5rem; margin-bottom: 1.2rem; font-size: 1.75rem; }
-        
         .prose p { margin-bottom: 1.8rem; line-height: 1.9; color: #475569; font-size: 1.15rem; text-align: justify; text-justify: inter-word; }
         .prose strong { color: #2563eb; font-weight: 700; }
-        
         .prose ol { counter-reset: item; padding-left: 0; margin-bottom: 3rem; }
-        
         .prose ol li { display: block; margin-bottom: 2rem; position: relative; padding-left: 4.5rem; line-height: 1.8; color: #334155; font-size: 1.15rem; text-align: justify; text-justify: inter-word; }
         .prose ol li::before { 
             content: counter(item); 
@@ -131,6 +128,10 @@
             transform: scale(1.02);
             box-shadow: 0 20px 40px -10px rgba(30, 64, 175, 0.4);
         }
+
+        .step-pill {
+            @apply flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-xs font-black mr-4 flex-shrink-0;
+        }
     </style>
 </head>
 <body class="selection:bg-blue-600 selection:text-white overflow-x-hidden">
@@ -159,11 +160,11 @@
                     <input type="password" id="login-password" placeholder="••••••••" class="w-full px-8 py-6 bg-white/5 border border-white/10 rounded-[2rem] text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all font-semibold" />
                 </div>
                 
-                <button onclick="handleLogin()" id="btn-login-action" class="w-full bg-blue-600 hover:bg-blue-400 text-white font-extrabold py-7 rounded-[2rem] transition-all shadow-2xl shadow-blue-500/20 flex items-center justify-center gap-4 group mt-8">
+                <button onclick="handleLogin()" id="btn-login-action" class="w-full bg-blue-600 hover:bg-blue-400 text-white font-extrabold py-7 rounded-[2rem] transition-all shadow-2xl shadow-blue-600/20 flex items-center justify-center gap-4 group mt-8">
                     <span class="uppercase tracking-widest text-xs">Buka Dasbor Bisnis</span>
                     <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                 </button>
-                <div id="login-error" class="text-rose-400 text-[10px] font-bold text-center mt-6 hidden p-5 bg-rose-400/10 rounded-2xl border border-rose-500/20">OPS! KAYAKNYA ADA YANG SALAH KETIK DEH.</div>
+                <div id="login-error" class="text-rose-400 text-[10px] font-bold text-center mt-6 hidden p-5 bg-rose-500/10 rounded-2xl border border-rose-500/20">OPS! KAYAKNYA ADA YANG SALAH KETIK DEH.</div>
             </div>
         </div>
     </div>
@@ -189,6 +190,9 @@
                             <span id="status-text">Siap Bantu!</span>
                         </div>
                         <div class="flex items-center bg-slate-100 rounded-2xl p-1">
+                            <button onclick="toggleHelp()" class="p-4 text-slate-500 hover:text-blue-600 transition-all rounded-xl hover:bg-white" title="Bantuan">
+                                <i data-lucide="help-circle" class="w-5 h-5"></i>
+                            </button>
                             <button onclick="toggleApiSettings()" class="p-4 text-slate-500 hover:text-blue-600 transition-all rounded-xl hover:bg-white" title="Pengaturan">
                                 <i data-lucide="settings" class="w-5 h-5"></i>
                             </button>
@@ -208,7 +212,10 @@
                     <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
                     <h4 class="text-3xl font-extrabold mb-4 uppercase tracking-tight relative z-10">Belum Bisa Mikir Nih...</h4>
                     <p class="text-blue-100 mb-10 text-lg relative z-10 max-w-xl mx-auto">Asisten kamu butuh "nyawa" (API Key) biar bisa mulai bikin strategi jualan yang maut buat kamu.</p>
-                    <button onclick="toggleApiSettings()" class="bg-white text-blue-600 font-black px-12 py-5 rounded-2xl text-xs uppercase tracking-widest hover:bg-slate-100 transition-all relative z-10">Masukin Kodenya Sekarang</button>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
+                        <button onclick="toggleApiSettings()" class="bg-white text-blue-600 font-black px-12 py-5 rounded-2xl text-xs uppercase tracking-widest hover:bg-slate-100 transition-all">Masukin Kodenya Sekarang</button>
+                        <button onclick="toggleHelp()" class="bg-blue-700/50 text-white font-black px-12 py-5 rounded-2xl text-xs uppercase tracking-widest hover:bg-blue-700 transition-all border border-blue-400/30">Cara Dapetin Kodenya?</button>
+                    </div>
                 </div>
             </div>
 
@@ -307,6 +314,69 @@
         </div>
     </div>
 
+    <!-- HELP MODAL -->
+    <div id="help-panel" class="hidden fixed inset-0 z-[70] flex items-center justify-center p-8">
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-md" onclick="toggleHelp()"></div>
+        <div class="w-full max-w-2xl relative animate-in bg-white rounded-[3.5rem] p-12 md:p-16 shadow-2xl max-h-[90vh] overflow-y-auto no-scrollbar">
+            <button onclick="toggleHelp()" class="absolute top-10 right-10 text-slate-300 hover:text-slate-900 transition-colors"><i data-lucide="x" class="w-8 h-8"></i></button>
+            <h3 class="text-4xl font-black mb-8 tracking-tighter uppercase leading-none text-center">Panduan<br><span class="text-blue-600 italic">Mulai Jualan</span></h3>
+            
+            <div class="space-y-12">
+                <div class="bg-blue-50 p-8 rounded-[2.5rem] border border-blue-100">
+                    <h4 class="text-xl font-black text-blue-900 mb-6 uppercase flex items-center gap-3">
+                        <i data-lucide="key" class="w-6 h-6 text-blue-600"></i> Cara Dapetin API Key
+                    </h4>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">1</div>
+                            <p class="text-slate-600 text-sm font-medium">Buka <a href="https://aistudio.google.com/" target="_blank" class="text-blue-600 font-bold underline">Google AI Studio</a> (Gratis!).</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">2</div>
+                            <p class="text-slate-600 text-sm font-medium">Login pakai akun Google kamu.</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">3</div>
+                            <p class="text-slate-600 text-sm font-medium">Klik tombol <strong>"Get API key"</strong> di menu sebelah kiri.</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">4</div>
+                            <p class="text-slate-600 text-sm font-medium">Klik <strong>"Create API key in new project"</strong>.</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">5</div>
+                            <p class="text-slate-600 text-sm font-medium">Salin kodenya, terus balik ke sini dan tempel di menu <strong>Pengaturan</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6 px-4">
+                    <h4 class="text-xl font-black text-slate-900 uppercase">Gimana Cara Pakainya?</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-slate-50 rounded-3xl">
+                            <p class="font-bold text-slate-900 text-sm mb-2 uppercase">1. Pilih Modul</p>
+                            <p class="text-slate-500 text-xs leading-relaxed">Klik salah satu menu jualan di atas sesuai kebutuhan kamu (misal: "Tulisan Maut").</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-3xl">
+                            <p class="font-bold text-slate-900 text-sm mb-2 uppercase">2. Isi Data</p>
+                            <p class="text-slate-500 text-xs leading-relaxed">Isi kolom yang diminta. Makin detail datanya, makin cerdas jawaban asisten kamu.</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-3xl">
+                            <p class="font-bold text-slate-900 text-sm mb-2 uppercase">3. Racik Strategi</p>
+                            <p class="text-slate-500 text-xs leading-relaxed">Klik tombol "Bikinin Contekannya", tunggu sebentar, dan asisten kamu bakal kasih hasilnya.</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-3xl">
+                            <p class="font-bold text-slate-900 text-sm mb-2 uppercase">4. Simpan & Pakai</p>
+                            <p class="text-slate-500 text-xs leading-relaxed">Baca hasilnya (sudah rata kiri-kanan!), terus kamu bisa simpan ke Word buat dipakai jualan.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="toggleHelp()" class="btn-premium w-full py-6 rounded-[2rem] font-black uppercase text-xs tracking-widest mt-4">Paham, Mari Kita Mulai!</button>
+            </div>
+        </div>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -364,7 +434,7 @@
             { id: 6, title: "Pakar Identitas Visual", value: "Bedah Identitas Biar Gampang Diinget", role: "Penata Gaya Bisnis", desc: "Bikin toko kamu punya kepribadian yang kuat, mulai dari visual, gaya bahasa, sampe cara bikin pembeli ngerasa spesial.", prompt: (i) => `Bantu bangun identitas brand (Gaya Brand) yang mendalam dan unik untuk bisnis ${i.niche} di platform ${i.marketplace}. JELASKAN secara detail dalam format Bab dan Sub-Bab tentang: 
             ## Bab 1: Identitas Visual (Gimana toko kamu kelihatan).
             ## Bab 2: Gaya Bahasa & Communication (Gimana toko kamu ngomong).
-            ## Bab 3: Brand Personality (Kepribadian Toko).
+            ## Bab 3: Brand Personality (Kepribadian Brand).
             ## Bab 4: Pengalaman Pelanggan (Customer Experience).
             Sebutkan juga 15 saran taktis singkat buat membedakan diri dari saingan. Gunakan bahasa santai tapi isinya "daging" semua. DILARANG pakai tabel atau garis vertikal.`, fields: [{ id: 'marketplace', label: 'Tempat Jualan Utama', placeholder: 'TikTok Shop, Shopee, Instagram...' }, { id: 'niche', label: 'Jenis Bisnis / Produk', placeholder: 'Aksesoris Handmade, Makanan Sehat...' }] },
             { id: 7, title: "Teknik Persuasi Jujur", value: "Jujur Malah Bikin Percaya", role: "Psikolog Jualan", desc: "Teknik jualan dengan jujur di awal yang malah bikin pembeli jatuh cinta.", prompt: (i) => `Gimana cara jualan jujur buat produk ${i.productName} tapi malah bikin orang percaya dan beli? Pakai teknik Recency Effect tapi jelasin secara simpel.`, fields: [{ id: 'productName', label: 'Produknya Apa?', placeholder: 'HP Bekas, Kue, dll...' }] },
@@ -449,11 +519,17 @@
             ## Bab 4: Panduan Keputusan Strategis.
             Gunakan bahasa yang santai, akrab, dan isinya 'daging' banget. DILARANG pakai tabel atau garis vertikal.`, fields: [{ id: 'marketplace', label: 'Jualan di Mana?', placeholder: 'TikTok, Shopee, Instagram...' }, { id: 'productName', label: 'Nama Produk', placeholder: 'Minuman Kekinian, Pakaian Anak, Furniture...' }] },
             { id: 30, title: "Pusat Riset Kata Kunci & Tren Platform", value: "Bedah Kata Kunci & Tren Produk yang Lagi Hot", role: "Spesialis Riset Pasar & SEO", desc: "Lakukan riset mendalam buat cari kata kunci (keyword) yang paling banyak dicari, siapa audiens yang pas, dan trend produk terbaru di setiap platform pilihanmu.", prompt: (i) => `Bertindaklah sebagai Ahli SEO dan Riset Pasar Digital. Bantu saya melakukan riset teknis untuk produk ${i.productName} di platform ${i.marketplace}. JELASKAN secara detail dalam format Bab: 
-            ## Bab 1: Daftar Kata Kunci "Cuan" (Keywords). Berikan daftar kata kunci utama dan kata kunci turunan yang paling sering diketik calon pembeli di platform tersebut.
-            ## Bab 2: Analisa Minat Audiens. Bedah apa yang biasanya disukai audiens platform tersebut terkait produk ini (misal: mereka lebih suka video review singkat atau foto estetik).
-            ## Bab 3: Tren Produk & Hashtag. Apa tren terbaru yang lagi naik daun dan hashtag apa yang wajib dipakai supaya jualanmu gampang ditemukan.
-            ## Bab 4: Strategi Dominasi Pencarian. Kasih tips gimana cara menaruh kata kunci tadi di judul atau deskripsi produk supaya selalu muncul di urutan atas.
-            Gunakan bahasa yang santai, akrab, dan isinya 'daging' banget. DILARANG pakai tabel atau garis vertikal.`, fields: [{ id: 'marketplace', label: 'Pilih Platform Riset', placeholder: 'TikTok, Shopee, Instagram, Google...' }, { id: 'productName', label: 'Nama Produk yang Diriset', placeholder: 'Lampu Tidur, Gamis Silk, Keripik Pedas...' }] }
+            ## Bab 1: Daftar Kata Kunci "Cuan" (Keywords).
+            ## Bab 2: Analisa Minat Audiens.
+            ## Bab 3: Tren Produk & Hashtag.
+            ## Bab 4: Strategi Dominasi Pencarian.
+            Gunakan bahasa yang santai, akrab, dan isinya 'daging' banget. DILARANG pakai tabel atau garis vertikal.`, fields: [{ id: 'marketplace', label: 'Pilih Platform Riset', placeholder: 'TikTok, Shopee, Instagram, Google...' }, { id: 'productName', label: 'Nama Produk yang Diriset', placeholder: 'Lampu Tidur, Gamis Silk, Keripik Pedas...' }] },
+            { id: 31, title: "Arsitek Navigasi Algoritma Platform", value: "Taklukkan FYP & Explore Biar Konten Kamu Gak Dicuekin", role: "Pakar Mekanisme Platform", desc: "Bedah cara kerja algoritma terbaru di tiap platform (TikTok, IG, FB, dll) biar kontenmu gampang viral, dapet jangkauan luas, dan narik pembeli tanpa harus bayar iklan mahal.", prompt: (i) => `Bertindaklah sebagai Ahli Mekanisme Algoritma Media Sosial. Bantu saya memahami dan menaklukkan algoritma untuk ${i.productName} di platform ${i.marketplace}. Status konten saat ini: ${i.currentEngagement}. JELASKAN secara detail dalam format Bab: 
+            ## Bab 1: Mekanisme Inti Algoritma.
+            ## Bab 2: Formula Hook & 3 Detik Pertama.
+            ## Bab 3: Siklus Interaksi (Engagement Loop).
+            ## Bab 4: Strategi Distribusi Konten.
+            Gunakan bahasa yang santai, akrab, dan sangat aplikatif. DILARANG pakai tabel atau garis vertikal.`, fields: [{ id: 'marketplace', label: 'Platform Mana?', placeholder: 'TikTok, Instagram, Facebook, YouTube...' }, { id: 'productName', label: 'Produk/Tema Konten', placeholder: 'Review Gamis, Tutorial Masak, Edukasi Bisnis...' }, { id: 'currentEngagement', label: 'Kondisi Konten Saat Ini', placeholder: 'Lagi sepi penonton, atau stagnan di angka tertentu?' }] }
         ];
 
         let userApiKey = localStorage.getItem('jagojualan_api_key') || "";
@@ -490,6 +566,7 @@
         }
 
         function toggleApiSettings() { document.getElementById('api-settings-panel').classList.toggle('hidden'); }
+        function toggleHelp() { document.getElementById('help-panel').classList.toggle('hidden'); }
 
         async function verifyAndSaveApiKey() {
             const input = document.getElementById('api-key-input').value.trim();
